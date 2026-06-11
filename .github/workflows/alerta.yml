@@ -1,0 +1,18 @@
+name: Alerta NTFY
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Enviar notificación a ntfy.sh
+        run: |
+          curl -H "Title: Nuevo Push en Main" \
+               -H "Priority: default" \
+               -d "Se ha realizado un push al repositorio ${GITHUB_REPOSITORY} por ${GITHUB_ACTOR}" \
+               https://ntfy.sh/devops-itla
